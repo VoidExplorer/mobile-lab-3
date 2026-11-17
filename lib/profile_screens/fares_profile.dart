@@ -31,7 +31,7 @@ class _FaresProfile extends State<FaresProfile> {
       body: SafeArea(
         minimum: EdgeInsets.all(20),
         child: Column(
-          // mainAxisAlignment: .spaceBetween,
+          // mainAxisAlignment: .spaceAround,
           crossAxisAlignment: .center,
           spacing: 20,
           children: [
@@ -45,6 +45,12 @@ class _FaresProfile extends State<FaresProfile> {
                 Text("Following: ${_following}"),
               ],
             ),
+            ElevatedButton(
+                onPressed: () => setState(() {
+                  _followers++;
+                }),
+                child: Text("Follow")
+            )
           ],
         ),
       ),
