@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:mobile_lab_3/totals_provider.dart';
 
 class FaresProfile extends StatefulWidget {
   const FaresProfile({super.key});
@@ -45,12 +47,25 @@ class _FaresProfile extends State<FaresProfile> {
                 Text("Following: ${_following}"),
               ],
             ),
-            ElevatedButton(
-                onPressed: () => setState(() {
-                  _followers++;
-                }),
-                child: Text("Follow")
-            )
+            Row(
+              mainAxisAlignment: .spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () => setState(() {
+                    context.read<TotalsProvider>().increment_total_followers();
+                    _followers++;
+                  }),
+                  child: Text("Follow"),
+                ),
+                ElevatedButton(
+                  onPressed: () => setState(() {
+                    context.read<TotalsProvider>().increment_total_posts();
+                    _posts++;
+                  }),
+                  child: Text("Post"),
+                ),
+              ],
+            ),
           ],
         ),
       ),

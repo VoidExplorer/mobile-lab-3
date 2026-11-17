@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_lab_3/profile_screens/fares_profile.dart';
+import 'package:mobile_lab_3/totals_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => TotalsProvider(),
+      child: const MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -30,10 +35,11 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  int _total_followers = 0;
-  int _total_views = 0;
+
 
   void _incrementCounter() {
     setState(() {
@@ -43,6 +49,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final totals_provider = context.watch<TotalsProvider>();
+
+    final _total_followers = totals_provider.total_followers;
+    final _total_posts = totals_provider.total_posts;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -53,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: .center,
           children: [
             Text("Total Followers: $_total_followers"),
-            Text("Total views: $_total_views"),
+            Text("Total posts: $_total_posts"),
             ElevatedButton(
                 onPressed: (){
                   Navigator.push(context, 
