@@ -32,6 +32,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _total_followers = 0;
+  int _total_views = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -50,8 +52,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            Text("Total Followers: "),
-            Text("Total views: "),
+            Text("Total Followers: $_total_followers"),
+            Text("Total views: $_total_views"),
             ElevatedButton(
                 onPressed: (){
                   Navigator.push(context, 
